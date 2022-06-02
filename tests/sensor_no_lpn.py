@@ -18,10 +18,10 @@ def make_sensor():
 
         i2c = I2C(0, scl=Pin(scl_pin, Pin.OUT), sda=Pin(sda_pin), freq=1_000_000)
 
-        tof = VL53L5CXMP(i2c, lpn=Pin(lpn_pin, Pin.OUT, value=1))
+        tof = VL53L5CXMP(i2c)
     else:
         import busio
-        from microcontroller import pin
+        #from microcontroller import pin
         from digitalio import DigitalInOut, Direction
 
         from vl53l5cx.cp import VL53L5CXCP
@@ -29,19 +29,14 @@ def make_sensor():
         ## import adafruit boards library for named pins
         import boards
         
-        ## Sparkfun RP2040 Thing Plus or other boards with one set of SCL/SDA pins, plus lpn from tiny2040 *untested*
-        scl_pin, sda_pin = (boards.SCL, boards.SDA, pin.GPIO28, pin.GPIO5)
+        # Sparkfun RP2040 Thing Plus or other boards with one set of SCL/SDA pins
+        scl_pin, sda_pin = (boards.SCL, boards.SDA)
         
         # Pimoroni TINY2040 coupled with VL53L5CX breakout with low-power-pin (lpn)
         #scl_pin, sda_pin = (pin.GPIO1, pin.GPIO0, pin.GPIO28, pin.GPIO5)
-        
 
         i2c = busio.I2C(scl_pin, sda_pin, frequency=1_000_000)
 
-        lpn = DigitalInOut(lpn_pin)
-        lpn.direction = Direction.OUTPUT
-        lpn.value = True
-
-        tof = VL53L5CXCP(i2c, lpn=lpn)
+        tof = VL53L5CXCP(i2c)
 
     return tof

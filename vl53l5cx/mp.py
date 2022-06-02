@@ -24,9 +24,10 @@ class VL53L5CXMP(VL53L5CX):
 
     def reset(self):
         if not self._lpn:
-            raise ValueError("no LPN pin provided")
-
-        self._lpn.value(0)
-        sleep_ms(100)
-        self._lpn.value(1)
-        sleep_ms(100)
+            self.i2c.unlock()
+            #raise ValueError("no LPN pin provided")
+        else:
+            self._lpn.value = False
+            sleep_ms(100)
+            self._lpn.value = True
+            sleep_ms(100)
