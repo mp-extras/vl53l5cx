@@ -23,11 +23,9 @@ class VL53L5CXMP(VL53L5CX):
         self.i2c.writeto_mem(self.addr, reg16, buf, addrsize=16)
 
     def reset(self):
-        if not self._lpn:
-            self.i2c.unlock()
-            #raise ValueError("no LPN pin provided")
-        else:
+        if self._lpn:
             self._lpn.value = False
             sleep_ms(100)
             self._lpn.value = True
             sleep_ms(100)
+        # ELSE: Rely on init function to do software reset
