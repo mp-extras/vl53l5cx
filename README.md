@@ -5,6 +5,7 @@ This package provides a class that is (mostly) a straight port of the ST [Ultra 
 ![Range as colors demo](ttgo_vl53l5cx.png)
 
 The code has been tested with the VL53L5CX breakout board from [Pesky Products on Tindie](https://www.tindie.com/products/onehorse/vl53l5cx-ranging-camera/) using a [Pimoroni Tiny 2040](https://shop.pimoroni.com/products/tiny-2040) with both MicroPython (v1.16) and CircuitPython (v7.0) and a [LILYGO TTGO T-Display](http://www.lilygo.cn/prod_view.aspx?TypeId=50062&Id=1126&FId=t3:50062:3) using MicroPython (v1.17).
+Also with the [SparkFun Qwiic Mini ToF Imager](https://www.sparkfun.com/products/19013) on the [Adafruit QT Py ESP32-S2](https://www.adafruit.com/product/5325) using Circuitpython 8.2.3 and no Low Power Pin.
 
 ## Installation
 
